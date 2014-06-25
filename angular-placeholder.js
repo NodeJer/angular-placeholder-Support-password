@@ -14,7 +14,7 @@ directive('placeholder', function(){
 			if(!ie8 && !elements[0].attachEvent)return false;
 
 			if(ie8 && type === 'password'){
-				var id = +new Date();
+				var id = 'p'+Math.random();
 				var textInputHTML = elements[0].outerHTML.replace('type=password', 'type=text style="color:gray" id='+id).
 				replace('value=""', 'value='+placeholder);
 
