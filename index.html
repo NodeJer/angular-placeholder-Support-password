@@ -20,11 +20,11 @@
 	}
 </style>
 </head>
-<body>
+<body id="ng-app">
     <div ng-app="placeholder">
         <input type="text" name="text" placeholder="请输入账号">
         <input type="password" name="text" placeholder="请输入密码">
-        <input type="password" name="text" placeholder="确认密码">
+        <input type="password" name="text2" placeholder="确认密码">
     </div>
     
 
@@ -32,6 +32,15 @@
     <!--[if lte IE 9]>
     	<script src="angular-placeholder.js"></script>
     <![endif]-->
-    
+    <script>
+    	angular.module('app', ['placeholder']).
+
+    	config(function($sceProvider) {
+	  // Completely disable SCE to support IE7.
+	  $sceProvider.enabled(false);
+	});
+
+	angular.bootstrap(document.body, ['app']);
+    </script>
 </body>
 </html>
