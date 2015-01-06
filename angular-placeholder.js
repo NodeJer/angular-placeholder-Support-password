@@ -3,18 +3,24 @@
 *
 * Description
 */
+
+
 angular.module('placeholder', []).
 
 directive('placeholder', function(){
+	
 	return function($scope, elements, attrs, controller) {
 			var placeholder = attrs.placeholder;
 			var type = elements.attr('type');
+
 			var ie8 = !-[1,];
 
-			if(!ie8 && !elements[0].attachEvent)return false;
+			if(!ie8 && !elements[0].attachEvent){
+				return false;
+			}
 
 			if(ie8 && type === 'password'){
-				var id = +new Date();
+				var id = 'p'+Math.random();
 				var textInputHTML = elements[0].outerHTML.replace('type=password', 'type=text style="color:gray" id='+id).
 				replace('value=""', 'value='+placeholder);
 
@@ -39,6 +45,7 @@ directive('placeholder', function(){
 					elements.attr('type', '')
 				}
 				elements.val(placeholder).css('color', 'gray').
+				
 				on('focus blur', function(){
 					if(this.value === placeholder){
 						if(type === 'password'){
